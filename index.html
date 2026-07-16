@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Explorer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="light">
+    <header id="main-nav" class="navbar">
+        <h1>Task Manager</h1>
+        
+        <button id="openFormBtn" class="btn">Create Task</button>
+        <button id="themeToggleBtn" class="btn">Dark Theme</button>
+        <button id="scrollToConceptsBtn" class="btn">Concept Section</button>
+    </header>
+
+    <main>
+        <section class="task-section">
+            <div class="task-cards"></div>
+        </section>
+
+        <section class="concepts-section">
+            <h2>JavaScript Concepts Demo</h2>
+            <div class="grandparent-box"> Grand Parent
+                <div class="parent-box"> Parent
+                    <div class="child-box">Child</div>
+                </div>
+            </div>
+
+            <div class="attr-prop-demo">
+                <input type="text" value="Initial Text" id="initial-text"/>
+                <button id="check-values">Check Values</button>
+            </div>
+
+        </section>
+    </main>
+
+
+    <div class="task-form-pop-up">
+        <form class="task-form" action="">
+            <button type="button" id="closeFormBtn" class="close-btn">&times;</button>
+            <h2>Create Task</h2>
+            <input type="text" id="enter-title-inp" placeholder="Enter Title"/>
+            <select class="taskCategory">
+                <option value="study">Study</option>
+                <option value="coding">Coding</option>
+                <option value="personal">Personal</option>
+            </select>
+
+            <div class="submit-btn">
+                <button id="task-add-btn">Add Task</button>
+            </div>            
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

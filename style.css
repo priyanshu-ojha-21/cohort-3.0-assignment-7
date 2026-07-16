@@ -1,0 +1,445 @@
+/* 1. THEME VARIABLES 
+  This sets up the colors for your Light and Dark modes.
+*/
+:root {
+  /* Light Theme (Default) */
+  --bg-color: #f4f7f6;
+  --text-color: #333333;
+  --header-bg: #ffffff;
+  --primary-btn: #4f46e5; /* Modern Indigo */
+  --primary-hover: #4338ca;
+  --secondary-btn: #e5e7eb;
+  --secondary-btn-hover: #d1d5db;
+  --border-color: #e5e7eb;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+  /* Dark Theme */
+  --bg-color: #111827;
+  --text-color: #f9fafb;
+  --header-bg: #1f2937;
+  --primary-btn: #6366f1;
+  --primary-hover: #818cf8;
+  --secondary-btn: #374151;
+  --secondary-btn-hover: #4b5563;
+  --border-color: #374151;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+}
+
+/* 2. GLOBAL RESETS 
+*/
+body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  /* This transition makes the theme switch look smooth */
+  transition: background-color 0.3s ease, color 0.3s ease; 
+}
+
+/* 3. HEADER LAYOUT (Flexbox) 
+*/
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--header-bg);
+  box-shadow: var(--shadow);
+  border-bottom: 1px solid var(--border-color);
+  gap: 1rem;
+  
+  /* Makes the header stick to the top when scrolling */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+.navbar h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* TRICK: Pushes the first button to the right, 
+  keeping the H1 on the left without needing extra wrapper divs.
+*/
+#openFormBtn {
+  margin-left: auto;
+}
+
+/* 4. BUTTON STYLING 
+*/
+.btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Create Task Button (Primary) */
+#openModalBtn {
+  background-color: var(--primary-btn);
+  color: #ffffff;
+}
+
+#openModalBtn:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Theme & Concept Buttons (Secondary) */
+#themeToggleBtn, #scrollToConceptsBtn {
+  background-color: var(--secondary-btn);
+  color: var(--text-color);
+}
+
+#themeToggleBtn:hover, #scrollToConceptsBtn:hover {
+  background-color: var(--secondary-btn-hover);
+}
+
+/* 5. RESPONSIVE DESIGN (Mobile)
+*/
+@media (max-width: 650px) {
+  .navbar {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  
+  #openModalBtn {
+    margin-left: 0; /* Resets the trick above for mobile */
+  }
+
+  .btn {
+    width: 100%; /* Buttons take full width on small screens */
+  }
+}
+
+
+main {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* =========================================
+   TASK CARDS GRID (Responsive)
+   ========================================= */
+.task-cards {
+    /* CSS Grid makes this automatically responsive */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.card {
+  /* Utilizing the global header-bg variable instead of static white 
+  so the card background automatically shifts when dark mode triggers*/
+  background: var(--header-bg); 
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+/* --- THE "COMPLETED" FUNCTIONALITY --- */
+/* When you toggle this class via JS, it changes the card's appearance */
+.card.completed-task {
+    background-color: #f0fdf4; /* Light green tint */
+    border-color: #86efac;
+    opacity: 0.8;
+}
+
+.card.completed-task h3 {
+    text-decoration: line-through;
+    color: #6b7280;
+}
+
+.card.completed-task label {
+    color: #16a34a; /* Green text for "Complete" */
+    font-weight: bold;
+}
+/* ------------------------------------- */
+
+.card-header h3 {
+  margin: 0.75rem 0 0.25rem 0;
+  font-size: 1.25rem;
+  /* Binding text to the global variable prevents dark text from vanishing on a dark background */
+  color: var(--text-color); 
+}
+
+.card-header p {
+  font-size: 0.85rem;
+  color: var(--text-color); 
+  /* Dropping opacity slightly creates visual hierarchy for the category text without needing a separate lighter color variable */
+  opacity: 0.7; 
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Aligns the checkbox and label nicely */
+.card-header input[type="checkbox"] {
+    margin-right: 0.5rem;
+    cursor: pointer;
+}
+
+.card-header label {
+    font-size: 0.9rem;
+    color: #4b5563;
+    cursor: pointer;
+}
+
+.actions-btns {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.actions-btns button {
+    flex: 1;
+    padding: 0.6rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #f3f4f6;
+    color: #374151;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.actions-btns button:hover {
+    background-color: #e5e7eb;
+}
+
+/* Specifically styling the second button (Delete) */
+.actions-btns button:nth-child(2):hover {
+    background-color: #fee2e2;
+    color: #ef4444;
+}
+
+/* =========================================
+   FORM POP-UP MODAL
+   ========================================= */
+.task-form-pop-up {
+    /* Hidden by default */
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dimmed overlay */
+    z-index: 1000;
+    
+    /* Flexbox to center the form on the screen */
+    align-items: center; 
+    justify-content: center;
+}
+
+/* Add this class via JavaScript to open the modal */
+.task-form-pop-up.show-modal {
+  display: flex;
+}
+
+.task-form {
+  /* Tied to the header-bg variable to maintain consistency with the navbar and task cards in both light and dark states */
+  background: var(--header-bg); 
+  padding: 2rem;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  background: none;
+  border: none;
+  font-size: 1.75rem;
+  cursor: pointer;
+  color: #6b7280;
+  transition: color 0.2s;
+  line-height: 1; /* Keeps the X perfectly vertically centered in its own space */
+}
+
+.close-btn:hover {
+  color: #ef4444;
+} 
+
+.task-form h2 {
+  text-align: center;
+  color: var(--text-color);
+}
+
+.task-form input,
+.task-form select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.task-form input:focus,
+.task-form select:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
+
+.submit-btn button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.submit-btn button:hover {
+    background-color: #4338ca;
+}
+
+/* =========================================
+   MOBILE RESPONSIVENESS
+   ========================================= */
+@media (max-width: 600px) {
+    main {
+        padding: 1rem;
+    }
+    
+    .task-cards {
+        grid-template-columns: 1fr; /* 1 column on phones */
+    }
+
+    .card {
+        padding: 1.25rem;
+    }
+
+    .task-form {
+        padding: 1.5rem;
+    }
+}
+
+/* =========================================
+   CONCEPT SECTION DEMO
+   ========================================= */
+.concepts-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px dashed var(--border-color);
+  display: none;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.concepts-section.show-concepts {
+  display: flex;
+}
+
+.concepts-section h2 {
+  color: var(--text-color);
+}
+
+/* --- BUBBLING DEMO BOXES --- */
+.grandparent-box {
+  padding: 2.5rem;
+  background-color: var(--header-bg);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.parent-box {
+  padding: 2.5rem;
+  background-color: var(--secondary-btn);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.child-box {
+  padding: 2.5rem;
+  background-color: var(--primary-btn);
+  color: #ffffff; /* Text stays white on the primary button color */
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease;
+}
+
+.child-box:hover {
+  transform: scale(1.02);
+}
+
+/* --- ATTRIBUTE VS PROPERTY DEMO --- */
+/* A quick wrapper to keep the input and button side-by-side */
+.attr-prop-demo {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+#initial-text {
+  flex: 1;
+  padding: 0.75rem;
+  background-color: var(--header-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+#initial-text:focus {
+  outline: none;
+  border-color: var(--primary-btn);
+}
+
+#check-values {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-btn);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#check-values:hover {
+  background-color: var(--primary-hover);
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 600px) {
+  .attr-prop-demo {
+    flex-direction: column; /* Stacks input and button on phones */
+  }
+  
+  .grandparent-box, .parent-box, .child-box {
+    padding: 1.25rem; /* Smaller padding on phones so boxes don't overflow */
+  }
+}
