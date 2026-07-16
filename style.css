@@ -443,3 +443,103 @@ main {
     padding: 1.25rem; /* Smaller padding on phones so boxes don't overflow */
   }
 }
+
+/* --- BROWSER RENDERING PIPELINE --- */
+.pipeline-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: var(--header-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.pipeline-section h3 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+}
+
+.pipeline-container {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.pipeline-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pipe-box {
+  background-color: var(--secondary-btn);
+  color: var(--text-color);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  width: 140px;
+}
+
+.pipe-box.highlight {
+  background-color: var(--primary-btn);
+  color: white;
+}
+
+.pipe-box.final-render {
+  background-color: #10b981; /* Green for the final result */
+  color: white;
+  transform: scale(1.05);
+}
+
+.arrow {
+  color: var(--text-color);
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin: 0.25rem 0;
+}
+
+.pipeline-merge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 2px dashed var(--border-color);
+  padding-top: 1.5rem;
+}
+
+.pipe-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.pipe-desc {
+  font-size: 0.75rem;
+  color: var(--text-color);
+  opacity: 0.8;
+  max-width: 160px;
+  line-height: 1.2;
+}
+
+@media (max-width: 600px) {
+  .pipeline-container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .pipe-desc {
+    /* Bump up the font size slightly for readability on small screens */
+    font-size: 0.85rem; 
+    
+    /* Give the text a wider box since the columns are now stacked on top of each other */
+    max-width: 240px; 
+    
+    /* Add a tiny bit of padding so it doesn't hug the arrows too tightly */
+    padding-bottom: 0.25rem;
+  }
+}

@@ -33,6 +33,62 @@
                 <button id="check-values">Check Values</button>
             </div>
 
+            <div class="pipeline-section">
+                <h3>Browser Rendering Pipeline</h3>
+                <div class="pipeline-container">
+                    
+                    <div class="pipeline-col">
+                        <div class="pipe-item">
+                            <div class="pipe-box">HTML</div>
+                            <span class="pipe-desc">Raw code from the server</span>
+                        </div>
+                        <div class="arrow">&darr;</div>
+                        
+                        <div class="pipe-item">
+                            <div class="pipe-box">Parsing</div>
+                            <span class="pipe-desc">Browser reads line by line</span>
+                        </div>
+                        <div class="arrow">&darr;</div>
+                        
+                        <div class="pipe-item">
+                            <div class="pipe-box">Tokenization</div>
+                            <span class="pipe-desc">Converts tags to meaningful tokens</span>
+                        </div>
+                        <div class="arrow">&darr;</div>
+                        
+                        <div class="pipe-item">
+                            <div class="pipe-box highlight">DOM Tree</div>
+                            <span class="pipe-desc">Creates the structural object model</span>
+                        </div>
+                    </div>
+                    
+                    <div class="pipeline-col">
+                        <div class="pipe-item">
+                            <div class="pipe-box">CSS</div>
+                            <span class="pipe-desc">Raw styling rules</span>
+                        </div>
+                        <div class="arrow">&darr;</div>
+                        
+                        <div class="pipe-item">
+                            <div class="pipe-box highlight">CSSOM Tree</div>
+                            <span class="pipe-desc">Creates the style object model</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pipeline-merge">
+                    <div class="pipe-item">
+                        <div class="pipe-box highlight">DOM + CSSOM</div>
+                        <span class="pipe-desc">Structure and styles combined</span>
+                    </div>
+                    <div class="arrow">&darr;</div>
+                    <div class="pipe-item">
+                        <div class="pipe-box final-render">Render Tree</div>
+                        <span class="pipe-desc">Calculates exactly what to paint on screen</span>
+                    </div>
+                </div>
+            </div>
+
         </section>
     </main>
 
