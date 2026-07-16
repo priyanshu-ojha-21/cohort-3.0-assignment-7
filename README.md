@@ -1,6 +1,6 @@
 # Task Manager Application
 
-> 🔴 **Live Demo:** [Insert Your Live Live Here]
+> 🔴 **Live Demo:** https://cohort-3-0-assignment-7-kappa.vercel.app/
 
 ## 📝 Overview
 A dynamic, fully responsive Task Manager built entirely with Vanilla JavaScript. This project was developed to demonstrate core web development concepts including advanced DOM manipulation, state management, and modern CSS architecture.
