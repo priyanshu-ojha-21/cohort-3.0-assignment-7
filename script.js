@@ -156,15 +156,30 @@ taskCards.addEventListener('click', (e)=>{
 
 // concepts section code
 conceptSectionButton.addEventListener('click', ()=>{
+    // 1. Add the show-concepts class....
     conceptsSection.classList.toggle("show-concepts");
+
     // 2. Check if it just opened or closed
     if (conceptsSection.classList.contains("show-concepts")) {
+
         // It's open! Scroll down and hide the Create Task button
         conceptsSection.scrollIntoView({ behavior: 'smooth' });
         openFormBtn.style.display = "none"; 
-    } else {
+
+        // Change the button text so the user knows how to close it!
+        conceptSectionButton.textContent = "Close Concepts";
+
+    } 
+    else {
+
         // It's closed! Bring the Create Task button back
         openFormBtn.style.display = ""; 
+
+        // Change the text back to normal
+        conceptSectionButton.textContent = "Concept Section";
+
+        // Smoothly scroll them back to the top of the page where the tasks are!
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 })
 
